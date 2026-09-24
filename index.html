@@ -6,7 +6,13 @@
 <title>Sales Process 101 — The Money-Making Way | C³</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<!-- Perf (2026-09-24): the font sheet loads non-blocking, as on the quote sheets. A render-blocking
+     stylesheet from a third-party host holds the whole page (and every script) until that host
+     answers: on store guest wifi or a captive portal that can be "never". The page paints in the
+     fallback font and swaps to the web fonts the moment the sheet arrives.
+     If this comment is gone, an older copy of this file was re-uploaded. -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   /* bright pastel palette inspired by the PowerPoint */
@@ -792,5 +798,9 @@ function launchConfetti(){
   })();
 }
 </script>
+<script>/* Perf (2026-09-24): tell the cookcountycooks.com viewer this page has drawn, so it can show it
+   now instead of waiting for fonts and images (site contract C6). No-op when not framed. */
+(function(){function s(){try{if(window.parent!==window)window.parent.postMessage({source:'ccc-tool',state:'painted'},'*');}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',s,{once:true});else s();})();</script>
 </body>
 </html>
